@@ -12,13 +12,14 @@
 
 #include <QtCore/QTextStream>
 #include <QtCore/QFile>
-#include <QtGui/QApplication>
-#include <QtGui/QProgressDialog>
-#include <QtGui/QLabel>
-#include <QtGui/QPushButton>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QProgressDialog>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QPushButton>
 // IDA SDK Qt libs @ (SDK)\lib\x86_win_qt
-#pragma comment(lib, "QtCore4.lib")
-#pragma comment(lib, "QtGui4.lib")
+#pragma comment(lib, "Qt5Core.lib")
+#pragma comment(lib, "Qt5Widgets.lib")
+#pragma comment(lib, "Qt5Gui.lib")
 
 #include <ida.hpp>
 #include <kernwin.hpp>
@@ -71,7 +72,7 @@ static LRESULT CALLBACK msgHook(int nCode, WPARAM wParam, LPARAM lParam)
         LPCWPSTRUCT ms = (LPCWPSTRUCT)lParam;
         if (ms->message == WM_SIZE)
         {
-            if (prgDlg && (ms->hwnd == prgDlg->winId()))
+            if (prgDlg && (ms->hwnd == (HWND)prgDlg->winId()))
             {
                 if (ms->wParam == SIZE_MINIMIZED)
                     ::ShowWindow(getIdaHwnd(), SW_MINIMIZE);
@@ -226,7 +227,7 @@ void _cdecl WaitBox::show(LPCSTR titleText, LPCSTR labelText, LPCSTR styleSheet,
                 // Taskbar progress
                 showState = isUpdateReady = TRUE;
                 TaskProgress::start(getIdaHwnd());
-                TaskProgress::setTrackingWindow(prgDlg->winId());                                     
+                TaskProgress::setTrackingWindow((HWND)prgDlg->winId());                                     
             }                                                    
         }
         MYCATCH()

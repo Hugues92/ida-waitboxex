@@ -11,11 +11,11 @@
 
 #include <QtCore/QTextStream>
 #include <QtCore/QFile>
-#include <QtGui/QApplication>
-#include <QtGui/QProgressDialog>
-#include <QtGui/QLabel>
-#include <QtGui/QPushButton>
-#include <QtGui/QProgressBar>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QProgressDialog>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QProgressBar>
 
 class MyQProgressDialog : public QProgressDialog
 {   
